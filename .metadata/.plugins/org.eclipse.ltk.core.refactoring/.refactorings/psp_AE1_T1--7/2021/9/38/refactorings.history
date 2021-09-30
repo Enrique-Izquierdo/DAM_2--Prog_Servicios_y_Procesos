@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;es.florida.psp.AE1_8&apos; to &apos;AE1_7&apos;&#x0D;&#x0A;- Original project: &apos;AE1-7&apos;&#x0D;&#x0A;- Original element: &apos;es.florida.psp.AE1_8&apos;&#x0D;&#x0A;- Renamed element: &apos;es.florida.psp.AE1_7&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Rename similarly named elements&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;AE1_8&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;es.florida.psp{AE1_8.java[AE1_8" matchStrategy="1" name="AE1_7" qualified="false" references="true" similarDeclarations="true" stamp="1632687293403" textual="false" version="1.0"/>
+</session>
