@@ -1,0 +1,30 @@
+1Armageddon,1.1,10.1
+1Apocalypse,100.5,25.7
+1Calamity,127.9,33.9
+1Cataclysm,429.7,51.4
+1Killer no.1,5.5,99.7
+1Debacle,1000.5,150.6
+1Donald Trump,7.6,957.1
+1Tragedy,8.9,1231.8
+1Doom,325.1,1975.4
+1Death by Rock,432.5,842.5
+1Ctrl+Alt+Supr,321.8,987.8
+1Windows Blue Screen,31.8,999.9
+2Armageddon,1.1,10.1
+2Apocalypse,100.5,25.7
+2Calamity,127.9,33.9
+2Cataclysm,429.7,51.4
+2Killer no.1,5.5,99.7
+2Debacle,1000.5,150.6
+2Donald Trump,7.6,957.1
+2Tragedy,8.9,1231.8
+2Doom,325.1,1975.4
+2Death by Rock,432.5,842.5
+2Ctrl+Alt+Supr,321.8,987.8
+2Windows Blue Screen,31.8,999.9
+3Armageddon,1.1,10.1
+3Apocalypse,100.5,25.7
+3Calamity,127.9,33.9
+3Cataclysm,429.7,51.4
+3Killer no.1,5.5,99.7
+3Debacle,1000.5,150.6
