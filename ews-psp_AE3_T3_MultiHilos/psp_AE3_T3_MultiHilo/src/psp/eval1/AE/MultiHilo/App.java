@@ -7,6 +7,14 @@ public class App {
 	//GETTERS Y SETTERS
 	
 	//OTROS MÉTODOS DE INTERFACE
+	/**Métode: main
+	 * Descripción: Hilo principal de la app, que declara, inicializa y pone en cola de ejecución
+	 * 				a los hilos de los dos tipos de objetos utilizados: objetos de tipo Minero y
+	 *              objetos de tipo ventilador. Y, controla el final de la ejecución de los hilos
+	 *              de tipo Minero para, a continuación, gestionar el fin de la ejecución de los
+	 *              hilos de tipo Ventilador.
+	 * Parámetros de entrada: no utilitzats
+	 * Parámetres de salida: no */
 	public static void main(String[] args) {
 		//Declaramos e inicializamos el objeto mina, con el contenido total de oro pasada por parámetro,
 		//fuera del bucle "for" porque hay una única mina que es compartida por todos los mineros (hilos). 
@@ -26,8 +34,7 @@ public class App {
 			//el método run del objeto objMinero asociado. Nota: en este momento el hilo se pone
 			//en la cola gestionada por el programador -S.O.-.
 			hiloMinero.start();
-		}
-		
+		}		
 
 		Ventilador conmutador = new Ventilador();		
 		//Hilo ventilador encendido
@@ -46,15 +53,18 @@ public class App {
 		});					
 		hiloVentilador_Encendido.start();
 		hiloVentilador_Apagado.start();		
-		
-		
-		//Establecemos una pausa en el hilo principal (asociada al método main) para que
-		//los hilos secundarios terminen su ejecución antes de mostrar por pantalla el
-		//recuento final del oro extraído.
-		
+				
+		//El bucle impide que el hilo principal avance en su ejecución hasta que
+		//todos los "hilosMineros" han terminado de ejecutarse.
 		while (hiloMinero.isAlive()) {}
 		
+		//Una vez todos los "hiloMinero" han finalizado su ejecución, se asigna 
+		//el valor "false"al atributo estática "minerosTrabajando".
 		minerosTrabajando = false;
+		
+		//Establecemos una pausa en el hilo principal (asociada al método main) para que
+		//los últimos hilos secundarios terminen su ejecución antes de mostrar por pantalla el
+		//recuento final del oro extraído.
 		
 		try {
 			Thread.sleep(1000);

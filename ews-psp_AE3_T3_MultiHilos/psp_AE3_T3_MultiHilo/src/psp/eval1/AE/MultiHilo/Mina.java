@@ -6,6 +6,11 @@ public class Mina{
 	private int oroExtraido;
 	
 	//CONSTRUCTORES
+	/**Método: Mina
+	 * Descripción: permite la instanciación de un objeto de tipo Mina, pasandole por parámetro 
+	 * 				el contenido inicila de oro de la Mina
+	 * Parámetros de entrada: stock (int, cantidad inicial de oro de la Mina)
+	 * Parámetres de salida: no*/
 	public Mina (int pStock) {
 		stock = pStock;
 	}

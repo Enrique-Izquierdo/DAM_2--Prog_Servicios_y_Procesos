@@ -7,6 +7,11 @@ public class Minero implements Runnable{
 	private Mina mina;
 	
 	//CONSTRUCTORES
+	/**Método: Minero
+	 * Descripción: permite la instanciación de un objeto de tipo Minero, pasandole 
+	 * 				por parámetro un objeto Mina
+	 * Parámetros de entrada: objeto Mina
+	 * Parámetres de salida: no*/
 	public Minero(Mina pMina) {
 		bolsa = 0;
 		mina = pMina;
@@ -14,13 +19,25 @@ public class Minero implements Runnable{
 	
 	//GETTERS Y SETTERS
 	
-	//OTROS MÉTODOS DE INTERFACE	
+	//OTROS MÉTODOS DE INTERFACE
+	/**Método: run
+	 * Descripción: llama al método extraerRecurso
+	 * Parámetros de entrada: no
+	 * Parámetres de salida: no*/
 	@Override
 	public void run() {
 		extraerRecurso();		
 	}
 	
 	//MÉTODOS DE IMPLEMENTACIÓN
+	/**Método: extraerRecurso
+	 * Descripción: permite que un minero extraiga un oro de la mina, mientras quede oro;
+	 * 				e informa de la cantidad total de oro extraida por el minero, una vez
+	 * 				ha finalizado el proceso. Además, al estar sincronizado el código, 
+	 * 				impide que otro hiloMinero extraiga recursos de mina, mientras otro 
+	 * 				hiloMinero este haciendo uso de ella.
+	 * Parámetros de entrada: no
+	 * Parámetres de salida: no*/
 	private void extraerRecurso() {		
 		//Sincronizamos el bloque de código, dónde los hilos (mineros) hacen uso del
 		//recurso compartido (mina.getStock), para impedir que varios hilos intenten
