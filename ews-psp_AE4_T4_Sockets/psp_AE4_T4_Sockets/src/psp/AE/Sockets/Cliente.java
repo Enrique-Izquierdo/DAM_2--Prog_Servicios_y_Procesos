@@ -1,47 +1,52 @@
 package psp.AE.Sockets;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.InetSocketAddress;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class Cliente {
 
-	public static void main(String[] args) throws IOException {
-		System.out.println("CLIENTE "+args[3]+" >>> Arranca cliente");
-		System.out.println("CLIENTE "+args[3]+" >>> Conexion al servidor");
-		InetSocketAddress direccion = new InetSocketAddress("localhost", 9876);
-		Socket socket = new Socket();
-		//Cliente envia socket al servidor pasando por parametro la dirección del servidor.
-		socket.connect(direccion);
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
+		String host = "localhost"; //ruta de acceso al servidor.
+		int puerto = 1234; //puerto de escucha del servidor.
+		System.out.println("CLIENTE >> Arranca cliente");
+		//Cliente establece conexión (envia socket) con el servidor.
+		Socket socketCliente = new Socket(host, puerto);
+		//Preparamos a cliente para recibir objetos enviados por el servidor a traves del
+		//canal de entrada de datos (tipo objeto), perteneciente a la conexión cliente-servidor.
+		ObjectInputStream inObjecto = new ObjectInputStream(socketCliente.getInputStream());
+		//Cliente espera hasta recibir un objeto generico, enviado por el servidor a traves
+		//del canal de entrada de datos (tipo objeto); y lo "castea" a un objeto de tipo Persona.
+		Contrasenya pwd = (Contrasenya) inObjecto.readObject(); //readObject equivale a recibir objeto.
+		System.out.println("CLIENTE >> Recibe del servidor objeto Contrasenya SIN valores asignados: contraseña plana: "+pwd.getPwdPlano()
+							+" - contraseña encriptada: "+pwd.getPwdEncriptado()+" - tipo de encriptación: "+pwd.getTipoEncriptacion());
 		
-		System.out.println("CLIENTE "+args[3]+" >>> Envia datos para el cálculo");
-		//Preparamos a cliente para enviar datos al servidor a traves del 
-		//canal de salida de datos perteneciente a la conexión cliente-servidor
-		PrintWriter pw = new PrintWriter(socket.getOutputStream());
-		//Cliente envia datos al servidor
-		pw.print(args[0]+"\n");
-		pw.print(args[1]+"\n");
-		pw.print(args[2]+"\n");
-		pw.print(args[3]+"\n");
-		pw.flush(); //Borramos buffer datos enviados para que se ejecute el envio.
-				
-		System.out.println("CLIENTE "+args[3]+" >>> Preparando canal para recibir resultado");
-		//Preparamos a cliente para recibir datos del servidor a traves del 
-		//canal de entrada de datos perteneciente a la conexión cliente-servidor.
-		InputStream is = socket.getInputStream();
-		InputStreamReader isr = new InputStreamReader(is);
-		BufferedReader bfr = new BufferedReader(isr);
-		//Cliente espera hasta recibir datos del servidor, y los lee.
-		String resultado = bfr.readLine();
-		String nombreCliente = bfr.readLine();
-		System.out.println("CLIENTE "+nombreCliente+" >>> Recibe resultado: " + resultado);
+		//Solicitamos contraseña plana y tipo de encriptación a usuario; modificando
+		//el contenido del objeto recibido por el cliente (enviado por el servidor).
+		pwd.pedirContrasenyaPlana();
+		pwd.pedirTipoEncriptacion();
 		
-		//Cerramos socket
-		socket.close();
+		//Preparamos a cliente para enviar datos (tipo objeto) al servidor a traves de un
+		//canal de salida de datos (tipo objeto), perteneciente a la conexión cliente-servidor.
+		ObjectOutputStream outObjeto = new ObjectOutputStream(socketCliente.getOutputStream());
+		//Cliente envia el objeto modificado "p" al servidor a traves del canal para envio de datos (tipo objeto).
+		outObjeto.writeObject(pwd); //writeObject equivale a enviar objeto.
+		System.out.println("CLIENTE >> Envia al servidor el objeto Contrasenya CON valores asignados:"
+				+ " contraseña plana: "+pwd.getPwdPlano()+" - tipo de encriptación: "+pwd.getTipoEncriptacion());
+		
+		//Cliente espera hasta recibir un objeto generico, enviado por el servidor a traves
+		//del canal de entrada de datos (tipo objeto); y lo "castea" a un objeto de tipo Persona.
+		pwd = (Contrasenya) inObjecto.readObject(); //readObject equivale a recibir objeto.
+		System.out.println("CLIENTE >> Recibe del servidor el objeto Contrasenya CON valores asignados: contraseña plana: "+pwd.getPwdPlano()
+							+" - contraseña encriptada: "+pwd.getPwdEncriptado()+" - tipo de encriptación: "+pwd.getTipoEncriptacion());
+		
+		//Cerramos el canal para recibir objetos del servidor a traves de la conexión.
+		inObjecto.close();
+		//Cerramos el canal para enviar objetos al servidor a traves de la conexión.
+		outObjeto.close();
+		//Cerramos la conexión cliente-servidor (socket enviado por el cliente al servidor).
+		socketCliente.close();	
 	}
 
 }

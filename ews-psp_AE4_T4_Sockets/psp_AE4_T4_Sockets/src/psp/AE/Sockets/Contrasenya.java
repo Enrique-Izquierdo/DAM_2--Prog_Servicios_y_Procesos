@@ -1,12 +1,14 @@
 package psp.AE.Sockets;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Contrasenya {
+@SuppressWarnings("serial")
+public class Contrasenya implements Serializable{
 	//atributos
-	String pwdPlano;
-	String pwdEncriptado;
-	String tipoEncriptacion;
+	private String pwdPlano;
+	private String pwdEncriptado;
+	private String tipoEncriptacion;
 	
 	//constructores
 	public Contrasenya(String pwdPlano, String pwdEncriptado) {
@@ -14,22 +16,16 @@ public class Contrasenya {
 		this.pwdEncriptado = pwdEncriptado;
 	}
 	
+	
 	//getters y setters
-	public String getPwdPlano() {
-		return pwdPlano;
-	}
+	public String getPwdPlano () {		return pwdPlano;	}	
+	public String getPwdEncriptado () {		return pwdEncriptado;	}	
+	public String getTipoEncriptacion () {		return tipoEncriptacion;	}
 	
-	public String getPwdEncriptado() {
-		return pwdEncriptado;
-	}
+	public void setPwdPlano (String pwdPlano) {		this.pwdPlano = pwdEncriptado;	}	
+	public void setPwdEncriptado (String pwdEncriptado) {		this.pwdEncriptado = pwdEncriptado;	}	
+	public void setTipoEncriptacion (String tipoEncriptacion) {		this.tipoEncriptacion = tipoEncriptacion;	}
 	
-	public void setPwdPlano(String pwdPlano) {
-		this.pwdPlano = pwdEncriptado;
-	}
-	
-	public void setPwdEncriptado(String pwdEncriptado) {
-		this.pwdEncriptado = pwdEncriptado;
-	}
 	
 	//otros métodos de interface
 	public void pedirContrasenyaPlana() {
@@ -66,9 +62,11 @@ public class Contrasenya {
 	
 	public void aplicarEncriptacion() {
 		if (tipoEncriptacion.equals("ASCII")) {
-			encriptarASCII();
+			//encriptarASCII();
+			System.out.println("Aplicada encriptación ASCII.");
 		} else if (tipoEncriptacion.equals("MD5")) {
-			encriptarMD5();
+			//encriptarMD5();
+			System.out.println("Aplicada encriptación MD5.");
 		} else {
 			System.out.println("Error al asignar tipo de encriptación.");
 		}
@@ -77,11 +75,11 @@ public class Contrasenya {
 	}
 	
 	//métodos de implementación
-	private void encriptarASCII() {
-		
-	}
-	
-	private void encriptarMD5() {
-		
-	}
+//	private void encriptarASCII() {
+//		
+//	}
+//	
+//	private void encriptarMD5() {
+//		
+//	}
 }

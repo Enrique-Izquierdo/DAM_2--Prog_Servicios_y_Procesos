@@ -33,25 +33,25 @@ public class LanzadorMultiProceso {
 		builder = new ProcessBuilder(command);
 		builder.inheritIO().start();
 
-		//Ejecutamos cliente B
-		className = "psp.AE.Sockets.Cliente";
-		command = new ArrayList<>();
-		command.add(javaBin);
-		command.add("-cp");
-		command.add(classpath);
-		command.add(className);
-		builder = new ProcessBuilder(command);
-		builder.inheritIO().start();
-		
-		//Ejecutamos cliente C
-		className = "psp.AE.Sockets.Cliente";
-		command = new ArrayList<>();
-		command.add(javaBin);
-		command.add("-cp");
-		command.add(classpath);
-		command.add(className);
-		builder = new ProcessBuilder(command);
-		builder.inheritIO().start();
+//		//Ejecutamos cliente B
+//		className = "psp.AE.Sockets.Cliente";
+//		command = new ArrayList<>();
+//		command.add(javaBin);
+//		command.add("-cp");
+//		command.add(classpath);
+//		command.add(className);
+//		builder = new ProcessBuilder(command);
+//		builder.inheritIO().start();
+//		
+//		//Ejecutamos cliente C
+//		className = "psp.AE.Sockets.Cliente";
+//		command = new ArrayList<>();
+//		command.add(javaBin);
+//		command.add("-cp");
+//		command.add(classpath);
+//		command.add(className);
+//		builder = new ProcessBuilder(command);
+//		builder.inheritIO().start();
 	}
 
 }
