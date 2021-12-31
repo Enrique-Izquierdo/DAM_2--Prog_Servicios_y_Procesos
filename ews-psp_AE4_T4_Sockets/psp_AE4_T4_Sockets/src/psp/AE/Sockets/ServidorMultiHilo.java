@@ -5,7 +5,14 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ServidorMultiHilo {
-
+	
+	//MÉTODOS INTERFACE
+	/**Método: main
+	 * Descripción: arranca el servidor y establece un puerto de escucha que mantiene permanentente abierto, 
+	 * 				esperando la llegada de conexiones de clientes que son asignadas, cada una de las conexiones,
+	 * 				a hilos para permitir al servidor seguir recibiendo más conexiones.
+	 * Parámetros de entrada: args (String[]) no utilizado
+	 * Parámetros de salida: no*/
 	@SuppressWarnings("resource")
 	public static void main(String[] args) throws IOException {
 		System.err.println("SERVIDOR >>> Arranca el servidor, espera petición");

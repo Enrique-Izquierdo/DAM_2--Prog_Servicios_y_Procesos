@@ -10,6 +10,16 @@ import java.util.Scanner;
 
 public class Cliente {
 
+	
+	//MÉTODOS DE INTERFACE
+	/**Método: main
+	 * Descripción: arranca el cliente; envia una conexión al servidor; prepara los canales de intercambio de datos (tipo
+	 * 				objeto) con el servidor; llama a los métodos de la clase Contrasenya necesarios para solicitar al usuario
+	 * 				una contrasenya de texto plano y el tipo de encriptación a aplicar; asigna a los atributos, del objeto 
+	 * 				recibido del servidor, la información facilitada por el usuario mediante teclado; envia el objeto al servidor;
+	 *              recibe nuevamente el objeto enviado por el servidor y muestra al usuario la contrasenya encriptada.
+	 * Parámetros de entrada: args (String[]) no utilizado
+	 * Parámetros de salida: no*/
 	public static void main(String[] args) throws IOException, ClassNotFoundException {		
 		String host = "localhost"; //ruta de acceso al servidor.
 		int puerto = 1234; //puerto de escucha del servidor.

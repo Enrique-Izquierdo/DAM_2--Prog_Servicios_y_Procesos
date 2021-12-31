@@ -8,19 +8,24 @@ import java.util.Scanner;
 
 @SuppressWarnings("serial")
 public class Contrasenya implements Serializable{
-	//atributos
+	//ATRIBUTOS
 	private String pwdPlano;
 	private String pwdEncriptado;
 	private String tipoEncriptacion;
 	
-	//constructores
+	
+	//CONSTRUCTORES
+	/**Método: Contrasenya
+	 * Descripción: inicializa los atributos del objeto.
+	 * Parámetros de entrada: pwdPlano (String), pwdEncriptado (String)
+	 * Parámetros de salida: no*/
 	public Contrasenya(String pwdPlano, String pwdEncriptado) {
 		this.pwdPlano = pwdPlano;
 		this.pwdEncriptado = pwdEncriptado;
 	}
 	
 	
-	//getters y setters
+	//GETTERS Y SETTERS
 	public String getPwdPlano () {		return pwdPlano;	}	
 	public String getPwdEncriptado () {		return pwdEncriptado;	}	
 	public String getTipoEncriptacion () {		return tipoEncriptacion;	}
@@ -30,7 +35,11 @@ public class Contrasenya implements Serializable{
 	public void setTipoEncriptacion (String tipoEncriptacion) {		this.tipoEncriptacion = tipoEncriptacion;	}
 	
 	
-	//otros métodos de interface
+	//OTROS MÉTODOS INTERFACE
+	/**Método: pedirContrasenyaPlana
+	 * Descripción: Solicita la introducción de una contraseña por teclado a traves de la consola, y la asigna al atributo pwdPlano.
+	 * Parámetros de entrada: pEntradaTeclado (Scanner)
+	 * Parámetros de salida: no*/
 	public void pedirContrasenyaPlana(Scanner pEntradaTeclado) {
 		//Scanner entradaTeclado = new Scanner(System.in);
 		System.out.print("\n\tIntroduce una contraseña: ");
@@ -38,6 +47,10 @@ public class Contrasenya implements Serializable{
 		//entradaTeclado.close();
 	}
 	
+	/**Método: pedirTipoEncriptación
+	 * Descripción: Solicita la introducción del tipo de encriptación a aplicar, y la asigna al atributo tipoEncriptacion.
+	 * Parámetros de entrada: pEntradaTeclado (Scanner)
+	 * Parámetros de salida: no*/
 	public void pedirTipoEncriptacion(Scanner pEntradaTeclado) {
 		System.out.print("\tIntroduzca la letra correspondiente al tipo de encriptación a aplicar (A - encriptación ASCII, B - encriptación MD5): ");
 		String tipo = pEntradaTeclado.next();
@@ -57,6 +70,10 @@ public class Contrasenya implements Serializable{
 		System.out.println("");
 	}
 	
+	/**Método: aplicarEncriptacion
+	 * Descripción: LLama al método privado de encriptación asignado al atributo tipoEncriptacion.
+	 * Parámetros de entrada: no
+	 * Parámetros de salida: no*/
 	public void aplicarEncriptacion() {
 		if (tipoEncriptacion.equals("ASCII")) {
 			encriptarASCII();
@@ -64,16 +81,19 @@ public class Contrasenya implements Serializable{
 			encriptarMD5();
 		} else {
 			System.out.println("Error al asignar tipo de encriptación.");
-		}
-		
-		
+		}		
 	}
 	
-	//métodos de implementación
+	
+	//MÉTODOS IMPLEMENTACIÓN
+	/**Método: encriptarASCII
+	 * Descripción: Encripta la cadena guardada en el atributo pwdPlano, convirtiendo cada uno de los carácteres 
+	 * 				de la cadena en el siguiente del código ASCII; y asigna la nueva cadena al atributo pwdEncriptado.
+	 * Parámetros de entrada: no
+	 * Parámetros de salida: no*/
 	private void encriptarASCII() {	
 		//System.out.println(pwdPlano);
-		String[] nuevaContrasenya = new String[pwdPlano.length()];
-		
+		String[] nuevaContrasenya = new String[pwdPlano.length()];		
 		for(int i=0; i<pwdPlano.length(); i++) {
 			 char caracter = pwdPlano.charAt(i);
 			 int valorAscii = caracter;
@@ -83,12 +103,16 @@ public class Contrasenya implements Serializable{
 			 }
 			 char nuevoCaracter = (char) nuevoValorAscii;
 			 nuevaContrasenya[i] = String.valueOf(nuevoCaracter);
-		}
-		
+		}		
 		pwdEncriptado = String.join("",nuevaContrasenya);				
 		//System.out.println(pwdEncriptado);
 	}
 	
+	/**Método: encriptarMD5
+	 * Descripción: Encripta la cadena guardada en el atributo pwdPlano mediante la aplicación del 
+	 * 				algoritmo MD5, y asigna la nueva cadena al atributo pwdEncriptado.
+	 * Parámetros de entrada: no
+	 * Parámetros de salida: no*/
 	private void encriptarMD5() {
 		try {
 			 MessageDigest md = MessageDigest.getInstance("MD5");

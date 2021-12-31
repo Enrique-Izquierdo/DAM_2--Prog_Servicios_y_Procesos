@@ -9,13 +9,25 @@ public class Peticion implements Runnable{
 	//atributos
 	Socket socketCliente;
 	
-	//constructores
+	//CONSTRUCTORES
+	/**Método: Peticion
+	 * Descripción: inicializa los atributos del objeto.
+	 * Parámetros de entrada: socketCliente (Socket)
+	 * Parámetros de salida: no*/
 	public Peticion(Socket socketCliente) {
 		this.socketCliente = socketCliente;
 	}
 	
-	//getters y setters
-	//métodos de interface
+	//GETTERS Y SETTERS
+	//MÉTODOS INTERFACE
+	/**Método: run
+	 * Descripción: prepara los canales de intercambio de datos (tipo objeto) con el cliente; instancia la clase
+	 * 				Contrasenya y envia el objeto con los atributos inicializado a null, al servidor; recibe el objeto
+	 * 				del cliente con los valores facilitado por el usuario a los atributos pwdPlano y tipoEncriptacion; 
+	 *              llama al método aplicarEncriptacin() de la clase Contrasenya; envia el objeto Contrasenya con la
+	 *              contraseña encriptada (atributo pwdEncriptado) al cliente; cierra la conexión.
+	 * Parámetros de entrada: no
+	 * Parámetros de salida: no*/	
 	@Override
 	public void run() {		
 		try {
@@ -61,6 +73,6 @@ public class Peticion implements Runnable{
 
 	}
 
-	//métodos de implementación
+	//MÉTODOS IMPLEMENTACIÓN
 
 }
